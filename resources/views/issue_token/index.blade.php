@@ -291,9 +291,7 @@
                 var existing = $("#mynumber").val();
                 var result;
                 if (input === "GO") {
-                    /* do something with
-                     * $("#mynumber").val();
-                     */
+                    /* do something with*/
                     if ($("#mynumber").val().length == 10){
                         let data = {
                             service_id: service.id,
