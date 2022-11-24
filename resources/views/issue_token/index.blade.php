@@ -301,6 +301,7 @@
                             with_details: true
                         }
                         createToken(data);
+                        $("#mynumber").val('');
                     }
                 } else if (input === "DEL") {
                     result = existing.slice(0, -1);

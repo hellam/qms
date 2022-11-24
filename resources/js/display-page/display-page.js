@@ -112,7 +112,7 @@ if (document.getElementById("display-page")) {
             popup(token) {
                 Swal.fire({
                     showConfirmButton: false,
-                    timer: 2000,
+                    timer: 10000,
                     customClass: 'swal-wide',
                     html: '<h1 style="color:#000; font-size:70px">' + token.token_letter + '-' + token.token_number + '</h1><h3 style="font-size:40px">' + token.counter.name + '</h3>',
                 });
