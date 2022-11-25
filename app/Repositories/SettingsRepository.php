@@ -94,4 +94,25 @@ class SettingsRepository
         $settings->save();
         return $settings;
     }
+
+    public function updateVideoSettings($data)
+    {
+        $settings = Setting::first();
+        $settings->video_enabled = $data['video_enabled'];
+        $path = (isset($data['video']) && $data['video']->isValid() ? $data['video']->store('video', 'public') : null);
+        $settings->video =  $data['video_enabled'] == 1 ? $path : null;
+        $settings->save();
+        return $settings;
+    }
+
+    public function removeVideo()
+    {
+        $settings = Setting::first();
+        if ($settings->video) {
+            Storage::disk('public')->delete($settings->video);
+            $settings->video = null;
+            $settings->save();
+        }
+        return $settings;
+    }
 }

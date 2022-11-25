@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Language;
 use App\Models\Setting;
 use App\Repositories\SettingsRepository;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
@@ -43,7 +44,7 @@ class SettingsController extends Controller
         }
         DB::commit();
         session(['settings' => Setting::first()]);
-        $request->session()->flash('success', 'Succesfully updated settings');
+        $request->session()->flash('success', 'Successfully updated settings');
         return redirect()->route('settings');
     }
 
@@ -65,7 +66,7 @@ class SettingsController extends Controller
             return redirect()->route('settings');
         }
         DB::commit();
-        $request->session()->flash('success', 'Succesfully updated settings');
+        $request->session()->flash('success', 'Successfully updated settings');
         return redirect()->route('settings');
     }
 
@@ -83,7 +84,7 @@ class SettingsController extends Controller
             return redirect()->route('settings');
         }
         DB::commit();
-        $request->session()->flash('success', 'Succesfully updated settings');
+        $request->session()->flash('success', 'Successfully updated settings');
         return redirect()->route('settings');
     }
 
@@ -128,7 +129,42 @@ class SettingsController extends Controller
         }
 
         DB::commit();
-        $request->session()->flash('success', 'Succesfully updated settings');
+        $request->session()->flash('success', 'Successfully updated settings');
         return redirect()->route('settings');
+    }
+
+    public function updateVideoSettings(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'video_enabled' => 'required',
+            'video' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm'
+        ]);
+        DB::beginTransaction();
+        try {
+            $settings = $this->settingsRepository->updateVideoSettings($request->all());
+            session(['settings' => $settings]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            $request->session()->flash('error', 'Something Went Wrong');
+            return redirect()->route('settings');
+        }
+
+        DB::commit();
+        $request->session()->flash('success', 'Successfully updated settings');
+        return redirect()->route('settings');
+    }
+
+    public function removeVideo()
+    {
+        DB::beginTransaction();
+        try {
+            $settings = $this->settingsRepository->removeVideo();
+            session(['settings' => $settings]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['status_code' => 500, 'data' => 'error']);
+        }
+        DB::commit();
+        return response()->json(['status_code' => 200, 'data' => $settings]);
     }
 }

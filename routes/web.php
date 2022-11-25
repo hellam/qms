@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ServiceController;
@@ -8,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CallController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SmsController;
+use App\Http\Controllers\DisplayController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
@@ -85,6 +84,8 @@ Route::middleware(['setLocale'])->group(function () {
             Route::post('settings/update-language-settings', [SettingsController::class, 'changeLanguage'])->name('update_language_settings');
             Route::get('settings/remove-logo', [SettingsController::class, 'removeLogo'])->name('remove_logo');
             Route::post('settings/update-sms-settings', [SettingsController::class, 'updateSmsSettings'])->name('update_sms_settings');
+            Route::post('settings/update-video-settings', [SettingsController::class, 'updateVideoSettings'])->name('update_video_settings');
+            Route::get('settings/remove-video', [SettingsController::class, 'removeVideo'])->name('remove_video');
         });
         //roles
 
@@ -96,7 +97,6 @@ Route::middleware(['setLocale'])->group(function () {
     // Route::group(['middleware' => ['permission:issue token']], function () {
     Route::get('kiosk', [TokenController::class, 'issueToken'])->name('issue_token');
     Route::post('queue', [TokenController::class, 'createToken'])->name('create-token');
-    Route::get('send-sms', [SmsController::class, 'sendSms'])->name('send-sms');
     // });
     // Route::group(['middleware' => ['permission:view display']], function () {
     Route::get('display', [DisplayController::class, 'showDisplayUrl'])->name('display');

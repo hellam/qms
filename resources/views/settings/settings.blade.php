@@ -20,6 +20,7 @@
             <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
                 <li class="tab"><a href="#test40" class="active">{{__('messages.settings.General Settings')}}</a></li>
                 <li class="tab"><a class="" href="#test5">{{__('messages.settings.SMS Settings')}}</a></li>
+                <li class="tab"><a class="" href="#test6">{{__('messages.settings.Display Settings')}}</a></li>
                 <li class="indicator" style="left: 0px; right: 796px;"></li>
             </ul>
         </div>
@@ -305,6 +306,64 @@
                     </div>
                 </div>
             </div>
+            <div id="test6" class="col s12" style="display: none;">
+                <div class="col s12">
+                    <div class="card-panel" style="margin-top: 15px;">
+                        <div class="row">
+                            <form id="video_settings" method="post" action="{{route('update_video_settings')}}" enctype="multipart/form-data">
+                                {{@csrf_field()}}
+                                <div class="row">
+                                    <div class="row form_align">
+                                        <div class="input-field col s3">
+                                            <select name="video_enabled" id="video_enabled" data-error=".video_enabled" onchange="changeVideoEnabled()">
+                                                <option value="0" @if($settings->video_enabled== 0) selected @endif>No</option>
+                                                <option value="1" @if($settings->video_enabled== 1) selected @endif>Yes</option>
+                                            </select>
+                                            <label>{{__('messages.settings.Video Enabled')}}</label>
+                                            <div class="sms_enabled">
+                                                @if ($errors->has('video_enabled'))
+                                                    <span class="text-danger errbk">{{ $errors->first('video_enabled') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
+
+                                        <div class="row" id="video_area">
+                                            @if($settings->video && Storage::disk('public')->exists($settings->video))
+                                            @endif
+                                            <div class="file-field input-field col s9">
+                                                <div class="btn">
+                                                    <span>{{__('messages.settings.video')}}</span>
+                                                    <input type="file" name="video" data-error=".video">
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text">
+                                                </div>
+                                                @if ($errors->has('logo'))
+                                                    <span class="text-danger errbk">{{ $errors->first('logo') }}</span>
+                                                @endif
+                                            </div>
+                                            @if($settings->video)
+                                                <div class="col s3" style="padding-top: 15px;">
+                                                    <div class="btn" style="display: block; padding:0 1rem; background-color:#f15353;" onclick="removeVideo()">
+                                                        <span>{{__('messages.common.delete')}}</span>
+                                                    </div>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row form_align">
+                                    <div class="input-field col s3" style="float:right;margin:0">
+                                        <button class="btn waves-effect right waves-light submit" type="submit">{{__('messages.common.submit')}}
+                                            <i class="mdi-content-send right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -317,6 +376,7 @@
     $(document).ready(function() {
         $('#color').colorpicker();
         changeSmsEnabled();
+        changeVideoEnabled();
     })
     // $('body').addClass('loaded');
     $(function() {
@@ -391,11 +451,38 @@
         });
     });
 
+    $(function() {
+        $('#video_settings').validate({
+            rules: {
+                video_enabled: {
+                    required: true
+                }
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error)
+                } else {
+                    error.insertAfter(element);
+                }
+            }
+        });
+    });
+
     function changeSmsEnabled() {
         if ($('#sms_enabled').val() == 1) {
             $('#url_keywords,#url_tab').show();
         } else {
             $('#url_tab,#url_keywords').hide();
+        }
+    }
+
+    function changeVideoEnabled() {
+        if ($('#video_enabled').val() == 1) {
+            $('#video_area').show();
+        } else {
+            $('#video_area').hide();
         }
     }
 
@@ -429,6 +516,37 @@
         $.ajax({
             type: "GET",
             url: "{{Route('remove_logo')}}",
+            cache: false,
+            success: function(response) {
+                if (response.status_code == 200) {
+                    M.toast({
+                        html: 'successfully removed'
+                    });
+                    location.reload(true);
+                } else {
+                    M.toast({
+                        html: 'something went wrong',
+                        classes: "toast-error"
+                    });
+                    $('body').addClass('loaded');
+                }
+            },
+            error: function() {
+                M.toast({
+                    html: 'something went wrong',
+                    classes: "toast-error"
+                });
+                $('body').addClass('loaded');
+            }
+        });
+    }
+</script>
+<script>
+    function removeVideo() {
+        $('body').removeClass('loaded');
+        $.ajax({
+            type: "GET",
+            url: "{{Route('remove_video')}}",
             cache: false,
             success: function(response) {
                 if (response.status_code == 200) {
