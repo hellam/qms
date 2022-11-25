@@ -137,7 +137,7 @@ class SettingsController extends Controller
     {
         $request->validate([
             'video_enabled' => 'required',
-            'video' => 'required|mimes:mp4,ogx,oga,ogv,ogg,webm'
+            'video' => 'mimes:mp4,ogx,oga,ogv,ogg,webm'
         ]);
         DB::beginTransaction();
         try {
