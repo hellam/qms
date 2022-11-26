@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SmsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CounterController;
 use App\Http\Controllers\ServiceController;
@@ -97,6 +98,7 @@ Route::middleware(['setLocale'])->group(function () {
     // Route::group(['middleware' => ['permission:issue token']], function () {
     Route::get('kiosk', [TokenController::class, 'issueToken'])->name('issue_token');
     Route::post('queue', [TokenController::class, 'createToken'])->name('create-token');
+    Route::get('send-sms', [SmsController::class, 'sendSms'])->name('send-sms');
     // });
     // Route::group(['middleware' => ['permission:view display']], function () {
     Route::get('display', [DisplayController::class, 'showDisplayUrl'])->name('display');

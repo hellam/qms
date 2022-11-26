@@ -136,11 +136,11 @@
                 </div>
                 <div class="row" style="margin-bottom:0; margin-top: 15px;">
                     <marquee><span
-                                style="font-size:{{$settings->display_font_size}}px;color:{{$settings->display_font_color}}">{{$settings->display_notification ? $settings->display_notification : 'Hello' }}<span></span></span>
+                                style="font-size:{{$settings->display_font_size}}px;color:{{$settings->display_font_color}}">{{$settings->display_notification ? $settings->display_notification : 'Welcome To Kush Bank' }}<span></span></span>
                     </marquee>
                 </div>
                 <audio id="called_sound">
-                    <source src="{{asset('app-assets/audio/sound.mp3')}}" type="audio/mpeg">
+                    <source src="{{asset('app-assets/audio/sound.wav')}}" type="audio/mpeg">
                 </audio>
             </section>
         </div>
@@ -155,7 +155,7 @@
             voice_type: "{{$settings->language->display}}",
             voice_content_one: "{{$settings->language->token_translation}}",
             voice_content_two: "{{$settings->language->please_proceed_to_translation}}",
-            date_for_display: "{{$date}}",
+            {{--date_for_display: "{{$date}}",--}}
             audioEl: document.getElementById('called_sound'),
         }
     </script>

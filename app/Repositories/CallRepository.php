@@ -3,7 +3,7 @@
 namespace App\Repositories;
 
 use App\Consts\CallStatuses;
-use App\Jobs\SendSmsJob;
+use App\Http\Controllers\SendSMSController;
 use App\Models\Call;
 use App\Models\Queue;
 use Carbon\Carbon;
@@ -174,6 +174,6 @@ class CallRepository
             ->where('service_id', $queue->service_id)
             ->where('position', $position)
             ->first();
-        if ($queue) SendSmsJob::dispatch($queue, $queue->service->status_message_format, $settings, 'status_message');
+        if ($queue) SendSMSController::sendSms($queue, $queue->service->status_message_format, $settings, 'status_message');
     }
 }

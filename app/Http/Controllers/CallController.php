@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendSmsJob;
 use App\Models\Call;
 use App\Models\Counter;
 use App\Models\Service;
@@ -67,7 +66,7 @@ class CallController extends Controller
         $called_tokens = [];
         $tokens_for_call = $this->tokenRepository->getTokensForCall($service);
         $called_tokens = $this->tokenRepository->getCalledTokens($service, $counter);
-        return  response()->json(['service' => $service, 'counter' => $counter, 'tokens_for_call' => $tokens_for_call, 'called_tokens' => $called_tokens]);
+        return response()->json(['service' => $service, 'counter' => $counter, 'tokens_for_call' => $tokens_for_call, 'called_tokens' => $called_tokens]);
     }
 
     public function getTokensForCall()
@@ -81,7 +80,7 @@ class CallController extends Controller
             $tokens_for_call = $this->tokenRepository->getTokensForCall($service);
             $called_tokens = $this->tokenRepository->getCalledTokens($service, $counter);
         }
-        return  response()->json(['service' => $service, 'counter' => $counter, 'tokens_for_call' => $tokens_for_call, 'called_tokens' => $called_tokens]);
+        return response()->json(['service' => $service, 'counter' => $counter, 'tokens_for_call' => $tokens_for_call, 'called_tokens' => $called_tokens]);
     }
 
     public function callNext(Request $request)
@@ -100,7 +99,7 @@ class CallController extends Controller
             if (!$called) return response()->json(['no_token_found' => true]);
             $settings = Setting::first();
             if ($called->queue->service->sms_enabled && $called->queue->service->call_message_enabled && $called->queue->phone && $settings->sms_url) {
-                SendSmsJob::dispatch($called->queue, $called->queue->service->call_message_format, $settings, 'call_next');
+                SendSMSController::sendSms($called->queue, $called->queue->service->call_message_format, $settings, 'call_next');
             }
             if ($called->queue->service->sms_enabled && $called->queue->service->status_message_enabled && $called->queue->phone && $settings->sms_url) {
                 foreach ($called->queue->service->status_message_positions as $position) {
@@ -163,7 +162,7 @@ class CallController extends Controller
                 $call = $this->callRepository->serveToken($call);
                 $settings = Setting::first();
                 if ($call->queue->service->sms_enabled && $call->queue->service->completed_message_enabled && $call->queue->phone && $settings->sms_url) {
-                    SendSmsJob::dispatch($call->queue, $call->queue->service->call_message_format, $settings, 'served');
+                    SendSMSController::sendSms($call->queue, $call->queue->service->call_message_format, $settings, 'served');
                 }
                 $this->callRepository->setCallsForDisplay($call->service);
                 $this->tokenRepository->setTokensOnFile();
@@ -190,7 +189,7 @@ class CallController extends Controller
                 $call = $this->callRepository->noShowToken($call);
                 $settings = Setting::first();
                 if ($call->queue->service->sms_enabled && $call->queue->service->noshow_message_enabled && $call->queue->phone && $settings->sms_url) {
-                    SendSmsJob::dispatch($call->queue, $call->queue->service->call_message_format, $settings, 'noshow');
+                    SendSMSController::sendSms($call->queue, $call->queue->service->call_message_format, $settings, 'noshow');
                 }
                 $this->callRepository->setCallsForDisplay($call->service);
                 $this->tokenRepository->setTokensOnFile();

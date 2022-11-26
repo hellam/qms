@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendSmsJob;
 use App\Models\Call;
 use App\Models\Queue;
 use App\Models\Service;
@@ -58,7 +57,7 @@ class TokenController extends Controller
             $customer_waiting = $customer_waiting > 0 ?  $customer_waiting - 1 : $customer_waiting;
             $settings = Setting::first();
             if ($service->sms_enabled && $service->optin_message_enabled && $queue->phone && $settings->sms_url) {
-                SendSmsJob::dispatch($queue, $service->optin_message_format, $settings, 'issue_token');
+                SendSMSController::sendSms($queue, $service->optin_message_format, $settings, 'issue_token');
             }
             $this->tokenRepository->setTokensOnFile();
         } catch (\Exception $e) {
