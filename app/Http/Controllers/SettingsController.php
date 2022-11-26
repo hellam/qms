@@ -136,7 +136,6 @@ class SettingsController extends Controller
 
     public function updateVideoSettings(Request $request): RedirectResponse
     {
-        ini_set('post_max_size', '1G');
         $request->validate([
             'video_enabled' => 'required',
             'video' => 'mimes:mp4,ogx,oga,ogv,ogg,webm|max:1000000'
