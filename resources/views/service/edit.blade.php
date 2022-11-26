@@ -179,7 +179,7 @@
                                         </div>
                                         <div class="row form_align">
                                             <div class="input-field col s6" style="margin-top: 0;" id="optin_message_tab">
-                                                <textarea id="optin_message_format" name="optin_message_format" class="materialize-textarea" data-error=".optin_message_format">@if($service->optin_message_format){{$service->optin_message_format}} @else Your token number is '$token_number$'. You are #$position$ in the '$service_name$' queue @endif</textarea>
+                                                <textarea id="optin_message_format" name="optin_message_format" class="materialize-textarea" data-error=".optin_message_format">@if($service->optin_message_format){{$service->optin_message_format}} @else Welcome, your token number is `$token_number$`. You are position $position$ in the `$service_name$` queue @endif</textarea>
                                                 <label for="optin_message_format">{{__('messages.service_page.Optin Message Format')}}</label>
                                                 <div class="optin_message_format">
                                                     @if ($errors->has('optin_message_format'))
@@ -277,7 +277,7 @@
                                                 </div>
                                                 <div class="row form_align">
                                                     <div class="input-field col s6" style="margin-top: 0;">
-                                                        <textarea id="status_message_format" name="status_message_format" class="materialize-textarea" data-error=".status_message_format">{{$service->status_message_format ? $service->status_message_format : ' Your token number `$token_number$` is at #$position$ in the `$service_name$` queue'}}</textarea>
+                                                        <textarea id="status_message_format" name="status_message_format" class="materialize-textarea" data-error=".status_message_format">{{$service->status_message_format ? $service->status_message_format : ' Your token number `$token_number$` is at position $position$ in the `$service_name$` queue'}}</textarea>
                                                         <label for="status_message_format">{{__('messages.service_page.Status Message Format')}}</label>
                                                         <div class="status_message_format">
                                                             @if ($errors->has('status_message_format'))
