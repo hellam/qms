@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SmsQueue extends Model
 {
+    protected $table = 'sms_queue';
     protected $fillable = [
-        'sms','from','to',
+        'sms','from','to','sent',
     ];
 }

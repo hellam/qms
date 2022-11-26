@@ -33,19 +33,20 @@ class SendSMSController extends Controller
                 else if ($from_call == 'served') $text = str_replace($search, $replace, $token->service->completed_message_format);
             }
 //            Log::info('Calling sms service');
-            $text = urlencode($text);
+//            $text = urlencode($text);
             $search = array('$phone$', '$text$');
             $replace = array($token->phone, $text);
             $url = str_replace($search, $replace, $settings->sms_url);
             try {
                 SmsQueue::create([
-                    'phone' => $token->phone,
+                    'to' => $token->phone,
                     'sms' => $text,
                     'from' => 'KUSH BANK',
                     ]);
 //                $response = Http::get($url);
-//                Log::info($url);
+                Log::info($url);
             } catch (\Exception $e) {
+                Log::alert($e);
             }
         }
     }

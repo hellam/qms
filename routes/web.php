@@ -99,6 +99,7 @@ Route::middleware(['setLocale'])->group(function () {
     Route::get('kiosk', [TokenController::class, 'issueToken'])->name('issue_token');
     Route::post('queue', [TokenController::class, 'createToken'])->name('create-token');
     Route::get('send-sms', [SmsController::class, 'sendSms'])->name('send-sms');
+    Route::get('crone-send-sms', [SmsController::class, 'smppSendQueued'])->name('crone_send_sms');
     // });
     // Route::group(['middleware' => ['permission:view display']], function () {
     Route::get('display', [DisplayController::class, 'showDisplayUrl'])->name('display');

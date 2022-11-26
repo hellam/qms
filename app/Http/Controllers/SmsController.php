@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CentralLogics\sms_module;
+use App\Models\Messages;
 use App\Models\Setting;
+use App\Models\SmsQueue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -15,18 +18,41 @@ class SmsController extends Controller
         $phone_number = $this->phoneIsValid($request->phone);
         if ($phone_number['is_valid']) {
 //            $this->talkTalkSendSMSAPI($phone_number['phone'],$request->text);
-            return $this->talkTalkSendSMSAPI($phone_number['phone'],$request->text);;
+            return $this->talkTalkSendSMSAPI($phone_number['phone'], $request->text);;
         }
         return 'failed';
     }
 
-    public function talkTalkSendSMSAPI($phone, $text)
+    public function smppSendQueued(): string
+    {
+        $outbox = SmsQueue::where('sent', 0)
+            ->whereDate('created_at', '>=', Carbon::now()->toDateString())
+            ->limit(1000)
+            ->get();
+
+        foreach ($outbox as $sms) {
+            $phone_number = $this->phoneIsValid($sms->to);
+            if ($phone_number['is_valid']) {
+                $sms->sent = 1;
+                $sms->update();
+                $this->talkTalkSendSMSAPI($phone_number['phone'], $sms->sms, $sms->from);
+            }else{
+                $sms->sent = 2;
+                $sms->update();
+            }
+        }
+        //get queued sms
+
+        return "success";
+    }
+
+    public function talkTalkSendSMSAPI($phone, $text, $from = 'KUSH BANK')
     {
         $credentials = base64_encode('x1PADERMsF' . 'bwh607GfBcOCx9vXMNFeEp5snDUVAPlJ');
         return Http::withHeaders([
             'apiKey' => $credentials,
         ])->post('https://api.talktalkltd.com/api/v1/sms/send', [
-            'from' => 'KUSH BANK',
+            'from' => $from,
             'to' => $phone,
             'message' => $text,
         ]);
