@@ -44,7 +44,7 @@ class SendSMSController extends Controller
                     'from' => 'KUSH BANK',
                     ]);
 //                $response = Http::get($url);
-                Log::info($url);
+//                Log::info($url);
             } catch (\Exception $e) {
                 Log::alert($e);
             }
