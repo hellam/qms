@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Setting;
+use App\Models\SmsQueue;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -13,7 +14,7 @@ class SendSMSController extends Controller
 
     public static function sendSms($token, $text, $settings, $from_call)
     {
-        Log::info('Sending SMS message');
+//        Log::info('Sending SMS message');
         if (strpos($settings->sms_url, '$phone$') !== false && strpos($settings->sms_url, '$text$') !== false) {
             $text = '';
             if ($from_call == 'issue_token') {
@@ -31,15 +32,19 @@ class SendSMSController extends Controller
                 else if ($from_call == 'noshow') $text = str_replace($search, $replace, $token->service->noshow_message_format);
                 else if ($from_call == 'served') $text = str_replace($search, $replace, $token->service->completed_message_format);
             }
-            Log::info('Calling sms service');
+//            Log::info('Calling sms service');
             $text = urlencode($text);
             $search = array('$phone$', '$text$');
             $replace = array($token->phone, $text);
             $url = str_replace($search, $replace, $settings->sms_url);
             try {
-
+                SmsQueue::create([
+                    'phone' => $token->phone,
+                    'sms' => $text,
+                    'from' => 'KUSH BANK',
+                    ]);
 //                $response = Http::get($url);
-                Log::info($url);
+//                Log::info($url);
             } catch (\Exception $e) {
             }
         }
