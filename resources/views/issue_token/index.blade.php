@@ -27,7 +27,7 @@
                                         <div class="col s12 m6 mb-3" onclick="queueDept({{$service}})">
                                             <span class="btn btn-large btn-queue waves-effect waves-light mb-1 width-100"
                                                   id="service_id_24"
-                                                  style="background: #009688; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">{{$service->name}}</span>
+                                                  style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">{{$service->name}}</span>
                                         </div>
                                     @endforeach
                                 </div>

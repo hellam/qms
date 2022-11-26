@@ -181,7 +181,7 @@ var monthlyRevenueChartData = {
          label: "Sales",
          data: [6, 9, 8, 4, 6, 7, 9, 4, 8],
          backgroundColor: "#46BFBD",
-         hoverBackgroundColor: "#009688"
+         hoverBackgroundColor: "#016B3F"
       }
    ]
 };
@@ -327,7 +327,7 @@ var countryRevenueChartData = {
          lineTension: 0,
          borderColor: "#fff",
          pointBorderColor: "#fff",
-         pointBackgroundColor: "#009688",
+         pointBackgroundColor: "#016B3F",
          pointHighlightFill: "#fff",
          pointHoverBackgroundColor: "#fff",
          borderWidth: 2,

@@ -27,7 +27,7 @@
                                     <small v-if="!tokens[0]" class="bolder-color" id="counter1"
                                            style="font-size:25px; font-weight:bold;">{{__('messages.display.nil')}}</small><br>
                                     <small v-if="tokens[0]?.call_status_id == {{CallStatuses::SERVED}}"
-                                           style="font-size:20px; color:#009688; font-weight:bold;">{{__('messages.display.served')}}</small>
+                                           style="font-size:20px; color:#016B3F; font-weight:bold;">{{__('messages.display.served')}}</small>
                                     <small v-if="tokens[0]?.call_status_id == {{CallStatuses::NOSHOW}}"
                                            style="font-size:20px;font-weight:bold;color:red">{{__('messages.display.noshow')}}</small>
                                     <small v-if="tokens[0] && tokens[0]?.call_status_id == null"
@@ -47,7 +47,7 @@
                                     <small v-if="!tokens[1]" class="bolder-color" id="counter1"
                                            style="font-size:25px; font-weight:bold;">{{__('messages.display.nil')}}</small><br>
                                     <small v-if="tokens[1]?.call_status_id == {{CallStatuses::SERVED}}"
-                                           style="font-size:20px; color:#009688; font-weight:bold;">{{__('messages.display.served')}}</small>
+                                           style="font-size:20px; color:#016B3F; font-weight:bold;">{{__('messages.display.served')}}</small>
                                     <small v-if="tokens[1]?.call_status_id == {{CallStatuses::NOSHOW}}"
                                            style="font-size:20px;font-weight:bold;color:red">{{__('messages.display.noshow')}}</small>
                                     <small v-if="tokens[1] && tokens[1]?.call_status_id == null"
@@ -67,7 +67,7 @@
                                     <small v-if="!tokens[2]" class="bolder-color" id="counter2"
                                            style="font-size:25px;font-weight:bold;">{{__('messages.display.nil')}}</small><br>
                                     <small v-if="tokens[2]?.call_status_id == {{CallStatuses::SERVED}}"
-                                           style="font-size:20px; color:#009688; font-weight:bold;">{{__('messages.display.served')}}</small>
+                                           style="font-size:20px; color:#016B3F; font-weight:bold;">{{__('messages.display.served')}}</small>
                                     <small v-if="tokens[2]?.call_status_id == {{CallStatuses::NOSHOW}}"
                                            style="font-size:20px; font-weight:bold; color:red">{{__('messages.display.noshow')}}</small>
                                     <small v-if="tokens[2] && tokens[2]?.call_status_id == null"
@@ -87,7 +87,7 @@
                                     <small v-if="!tokens[3]" class="bolder-color" id="counter3"
                                            style="font-size:25px; font-weight:bold;">{{__('messages.display.nil')}}</small><br>
                                     <small v-if="tokens[3]?.call_status_id == {{CallStatuses::SERVED}}"
-                                           style="font-size:20px; color:#009688; font-weight:bold;">{{__('messages.display.served')}}</small>
+                                           style="font-size:20px; color:#016B3F; font-weight:bold;">{{__('messages.display.served')}}</small>
                                     <small v-if="tokens[3]?.call_status_id == {{CallStatuses::NOSHOW}}"
                                            style="font-size:20px; font-weight:bold; color:red">{{__('messages.display.noshow')}}</small>
                                     <small v-if="tokens[3] && tokens[3]?.call_status_id == null"
@@ -115,7 +115,7 @@
                                     <span v-if="!tokens[0]"
                                           style="font-size:130px;color:red;font-weight:bold;line-height:1.2">{{__('messages.display.nil')}}</span>
                                     <div v-if="tokens[0]?.call_status_id == {{CallStatuses::SERVED}}"
-                                         style="font-size:40px; color:#009688">{{__('messages.display.served')}}</div>
+                                         style="font-size:40px; color:#016B3F">{{__('messages.display.served')}}</div>
                                     <div v-if="tokens[0]?.call_status_id == {{CallStatuses::NOSHOW}}"
                                          style="font-size:40px; color:red">{{__('messages.display.noshow')}}</div>
                                     <div v-if="tokens[0] && tokens[0]?.call_status_id == null"

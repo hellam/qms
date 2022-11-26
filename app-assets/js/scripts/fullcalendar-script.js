@@ -89,7 +89,7 @@ $(function() {
       {
         title: 'Dinner',
         start: '2015-05-12T20:00:00',
-        color: '#009688'
+        color: '#016B3F'
       },
       {
         title: 'Birthday Party',

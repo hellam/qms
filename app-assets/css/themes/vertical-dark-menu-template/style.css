@@ -1224,12 +1224,12 @@
 
 .teal
 {
-    background-color: #009688 !important;
+    background-color: #016B3F !important;
 }
 
 .teal-text
 {
-    color: #009688 !important;
+    color: #016B3F !important;
 }
 
 .teal.lighten-5
@@ -5582,12 +5582,12 @@ li.home:before
 
 .teal
 {
-    background-color: #009688 !important;
+    background-color: #016B3F !important;
 }
 
 .teal-text
 {
-    color: #009688 !important;
+    color: #016B3F !important;
 }
 
 .teal.lighten-5
@@ -7647,7 +7647,7 @@ li.home:before
 
 .btn-light-teal
 {
-    color: #009688 !important;
+    color: #016B3F !important;
     background-color: #e0f2f1;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .1), 0 3px 1px -2px rgba(0, 0, 0, 0), 0 1px 5px 0 rgba(0, 0, 0, .08);
 }
@@ -7670,7 +7670,7 @@ li.home:before
 /* timeline */
 .widget-timeline li.timeline-items.timeline-icon-teal:before
 {
-    background: #009688 !important;
+    background: #016B3F !important;
 }
 
 .btn-light-green
@@ -8978,7 +8978,7 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
     width: inherit;
     height: 64px;
 
-    background: #009688;
+    background: #016B3F;
     box-shadow: 0 4px 7px 0 rgba(0, 0, 0, .2);
 
     -webkit-backface-visibility: hidden;
@@ -9243,7 +9243,7 @@ nav.display-none.search-sm .nav-wrapper form .input-field i
     margin: 0;
 
     color: #fff;
-    background: #009688;
+    background: #016B3F;
     box-shadow: none;
 }
 

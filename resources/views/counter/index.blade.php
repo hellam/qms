@@ -14,11 +14,11 @@
             <div class="row">
                 <div class="col s12 m12 l12">
                     <h5 class="breadcrumbs-title col s5"><b> {{__('messages.counter_page.counters')}}</b></h5>
-                    <ol class="breadcrumbs col s7 right-align">
-                        <a class="btn-floating waves-effect waves-light tooltipped" href="{{route('counters.create')}}" data-position="top" data-tooltip="{{__('messages.counter_page.add counter')}}">
-                            <i class="material-icons">add</i>
-                        </a>
-                    </ol>
+{{--                    <ol class="breadcrumbs col s7 right-align">--}}
+{{--                        <a class="btn-floating waves-effect waves-light tooltipped" href="{{route('counters.create')}}" data-position="top" data-tooltip="{{__('messages.counter_page.add counter')}}">--}}
+{{--                            <i class="material-icons">add</i>--}}
+{{--                        </a>--}}
+{{--                    </ol>--}}
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                                                     <td>
                                                         <a class="btn-floating btn-action waves-effect waves-light orange tooltipped" href="{{route('counters.edit',[$counter->id])}}" data-position=top data-tooltip="{{__('messages.common.edit')}}"><i class="material-icons">edit</i></a>
 
-                                                        <a class="btn-floating btn-action waves-effect waves-light red tooltipped frmsubmit" href="{{route('counters.destroy',[$counter->id])}}" data-position=top data-tooltip="{{__('messages.common.delete')}}" method="DELETE"><i class="material-icons">delete</i></a>
+{{--                                                        <a class="btn-floating btn-action waves-effect waves-light red tooltipped frmsubmit" href="{{route('counters.destroy',[$counter->id])}}" data-position=top data-tooltip="{{__('messages.common.delete')}}" method="DELETE"><i class="material-icons">delete</i></a>--}}
 
                                                     </td>
                                                 </tr>

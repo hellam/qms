@@ -148,7 +148,7 @@
                         <div class="row">
                             <div class="col s2 pr-0 pl-0 center" style="width: 11.66667%;">
                                 <i class="material-icons vertical-text-middle"><a href="#" @click="closeRightMenu()"
-                                                                                  style="color: #009688;">clear</a></i>
+                                                                                  style="color: #016B3F;">clear</a></i>
                             </div>
                             <div class="col s10 pl-0">
                                 <ul class="tabs">
@@ -223,7 +223,7 @@
                                         </div>
                                         <h6 style="margin: 0px; font-size:20px; font-weight:600;">
                                             @{{token.token_letter}}-@{{token.token_number}}</h6>
-                                        <span style="background-color: #009688; padding: 0 5px; color:#fff; font-weight:600; min-width:22px"
+                                        <span style="background-color: #016B3F; padding: 0 5px; color:#fff; font-weight:600; min-width:22px"
                                               v-if="token.call_status_id == {{CallStatuses::SERVED}}">S</span>
                                         <span style="background-color: #ff0000; padding: 0 5px; color:#fff; font-weight:600; min-width:22px"
                                               v-if="token.call_status_id != {{CallStatuses::SERVED}}">N</span>

@@ -994,12 +994,12 @@
 
 .light-blue.lighten-1
 {
-    background-color: #009688 !important;
+    background-color: #016B3F !important;
 }
 
 .light-blue-text.text-lighten-1
 {
-    color: #009688 !important;
+    color: #016B3F !important;
 }
 
 .light-blue.darken-1
@@ -1224,12 +1224,12 @@
 
 .teal
 {
-    background-color: #009688 !important;
+    background-color: #016B3F !important;
 }
 
 .teal-text
 {
-    color: #009688 !important;
+    color: #016B3F !important;
 }
 
 .teal.lighten-5
@@ -3326,7 +3326,7 @@ blockquote
     margin: 20px 0;
     padding-left: 1.5rem;
 
-    border-left: 5px solid #009688;
+    border-left: 5px solid #016B3F;
 }
 
 i
@@ -3406,7 +3406,7 @@ video.responsive-video
 
 .pagination li.active
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .pagination li.disabled a
@@ -3673,7 +3673,7 @@ ul.staggered-list li
     padding-top: 20px;
 
     color: #fff;
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .page-footer .footer-copyright
@@ -4044,7 +4044,7 @@ th
 
 .progress .indeterminate
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .progress .indeterminate:before
@@ -5418,7 +5418,7 @@ nav
     height: 56px;
 
     color: #fff;
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 nav.nav-extended
@@ -6461,7 +6461,7 @@ small
 .tabs .tab a:hover,
 .tabs .tab a.active
 {
-     color: #009688;
+     color: #016B3F;
      background-color: transparent;
 }
 
@@ -6660,7 +6660,7 @@ small
 .btn-small:focus,
 .btn-floating:focus
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .btn,
@@ -6675,14 +6675,14 @@ small
     letter-spacing: .5px;
 
     color: #fff;
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .btn:hover,
 .btn-large:hover,
 .btn-small:hover
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .btn-floating
@@ -6706,12 +6706,12 @@ small
 
     color: #fff;
     border-radius: 50%;
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .btn-floating:hover
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .btn-floating:before
@@ -9514,7 +9514,7 @@ input[type=range]::-ms-thumb
     padding-left: 15px;
 
     color: #a8a8a8;
-    border-left: 1px solid #009688;
+    border-left: 1px solid #016B3F;
 }
 
 .table-of-contents a.active
@@ -9523,7 +9523,7 @@ input[type=range]::-ms-thumb
 
     padding-left: 14px;
 
-    border-left: 2px solid #009688;
+    border-left: 2px solid #016B3F;
 }
 
 .sidenav
@@ -9812,7 +9812,7 @@ input[type=range]::-ms-thumb
 .sidenav .collapsible-body > ul:not(.collapsible) > li.active,
 .sidenav.sidenav-fixed .collapsible-body > ul:not(.collapsible) > li.active
 {
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .sidenav .collapsible-body > ul:not(.collapsible) > li.active a,
@@ -10808,7 +10808,7 @@ input[type=range]::-ms-thumb
 
     opacity: 0;
     border-radius: 50%;
-    background-color: #009688;
+    background-color: #016B3F;
     box-shadow: 0 20px 20px 0 rgba(0, 0, 0, .14), 0 10px 50px 0 rgba(0, 0, 0, .12), 0 30px 10px -20px rgba(0, 0, 0, .2);
 }
 
@@ -11071,7 +11071,7 @@ input[type=range]::-ms-thumb
     padding: 20px 22px;
 
     color: #fff;
-    background-color: #009688;
+    background-color: #016B3F;
 
     -webkit-box-flex: 1;
     -webkit-flex: 1 auto;
@@ -11148,13 +11148,13 @@ input[type=range]::-ms-thumb
 
 .datepicker-table td.is-today
 {
-    color: #009688;
+    color: #016B3F;
 }
 
 .datepicker-table td.is-selected
 {
     color: #fff;
-    background-color: #009688;
+    background-color: #016B3F;
 }
 
 .datepicker-table td.is-outside-current-month,
@@ -11212,7 +11212,7 @@ input[type=range]::-ms-thumb
 {
     padding: 0 1rem;
 
-    color: #009688;
+    color: #016B3F;
 }
 
 .datepicker-clear

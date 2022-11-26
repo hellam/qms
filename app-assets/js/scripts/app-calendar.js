@@ -80,7 +80,7 @@ $(document).ready(function () {
       {
         title: 'All Day Event',
         start: '2019-01-01',
-        color: '#009688'
+        color: '#016B3F'
       },
       {
         title: 'Long Event',

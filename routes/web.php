@@ -38,7 +38,9 @@ Route::middleware(['setLocale'])->group(function () {
 
         Route::group(['middleware' => ['permission:view counters']], function () {
             Route::post('counter-change-status', [CounterController::class, 'changeStatus'])->name('counter_change_status');
-            Route::resource('counters', CounterController::class)->names('counters');
+            Route::resource('counters', CounterController::class)->except([
+                'create', 'store', 'destroy'
+            ])->names('counters');
         });
 
         Route::group(['middleware' => ['permission:view services']], function () {
