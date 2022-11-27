@@ -133,7 +133,8 @@
         </div>
     </div>
 @endsection
-<div id="printarea" class="printarea" style="text-align:center;margin-top: 20px; display:none">
+<div id="printarea" class="printarea"
+     style="text-align:center;margin-top: 20px; display:none;font-weight:bold;width: 100%;margin-left: 10px;">
 </div>
 @section('js')
     <script>
@@ -224,7 +225,18 @@
                         $('#email').val(null);
                         $('#name').val(null);
                         let html = `
-
+                            <div style="text-align: center;">
+                                <table style="margin-left: 20px;width: 100%;">
+                                    <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 30px;" id="duplicate"></th></tr>
+                                    <!--<tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 16px;"><img style="max-width: 200px;" src="assets/img/cooper_logo.png" style=""/></th></tr>-->
+                                    <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 22px;">` + response.settings.name + `</th></tr>
+                                    <!--<tr><td colspan="3" style="text-align:center;font-size: 16px;font-weight: bold;">KITALE</td></tr>-->
+                                    <!--<tr><td colspan="3" style="text-align:center;">Embakasi, Along Catherine Ndoroba Rd/AA Rd Next to AA Hqs.</td></tr>-->
+                                    <tr><td colspan="3" style="text-align:center;">P.O BOX 10845-00100</td></tr>
+                                    <tr><td colspan="3" style="text-align:center;">` + response.settings.location + `</td></tr>
+                                    <tr><td colspan="3" style="text-align:center;"><i><small>Tel: ` + response.settings.location + `</small></i></td></tr>
+                                </table>
+                            </div>
                             <p style="font-size: 15px; font-weight: bold; margin-top:-15px;">` + response.settings.name + `,` + response.settings.location + `
                             </p>
                             <p style="font-size: 10px; margin-top:-15px;">` + response.queue.service.name + `</p>
@@ -275,6 +287,7 @@
                 }
             });
         }
+
         function printTicket() {
             var mywindow = window.open('', 'PRINT', 'height=600,width=12000');
 
@@ -306,7 +319,7 @@
                 var result;
                 if (input === "GO") {
                     /* do something with*/
-                    if ($("#mynumber").val().length == 10){
+                    if ($("#mynumber").val().length == 10) {
                         let data = {
                             service_id: service.id,
                             name: $('#name').val(),
