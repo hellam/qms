@@ -12,20 +12,21 @@
 
     </div>
     <div id="main" class="noprint" style="padding: 15px 15px 0px;">
-        <div class="wrapper">
-            <section class="content-wrapper no-print">
-                <div class="container no-print">
-                    <div class="row">
-                        <div class="col s12">
-                            <div class="card" style="background:#f9f9f9;box-shadow:none" id="service-btn-container">
-                                <span class="card-title"
+        <div class="wrapper noprint">
+            <section class="content-wrapper noprint">
+                <div class="container noprint">
+                    <div class="row noprint">
+                        <div class="col s12 noprint">
+                            <div class="card noprint" style="background:#f9f9f9;box-shadow:none"
+                                 id="service-btn-container">
+                                <span class="card-title noprint"
                                       style="line-height:1;font-size:22px"> {{__('messages.issue_token.click one service to issue token')}}</span>
                                 <div class="divider" style="margin:10px 0 10px 0"></div>
 
-                                <div class="row">
+                                <div class="row noprint">
                                     @foreach($services as $service)
-                                        <div class="col s12 m6 mb-3" onclick="queueDept({{$service}})">
-                                            <span class="btn btn-large btn-queue waves-effect waves-light mb-1 width-100"
+                                        <div class="col s12 m6 mb-3 noprint" onclick="queueDept({{$service}})">
+                                            <span class="btn btn-large btn-queue mb-1 width-100 noprint"
                                                   id="service_id_24"
                                                   style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">{{$service->name}}</span>
                                         </div>
@@ -33,7 +34,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{route('create-token')}}" method="post" id="my-form-two" style="display: none;">
+                        <form action="{{route('create-token')}}" method="post" id="my-form-two" style="display: none;" class="noprint">
                             {{csrf_field()}}
                         </form>
                     </div>
@@ -41,7 +42,7 @@
             </section>
         </div>
         <!-- Modal Structure -->
-        <div id="modal1" class="modal modal1">
+        <div id="modal1" class="modal modal1 noprint">
             <div class="row align-items-center">
                 <div class="col s12 m6">
                     <h1 style="text-align: center; margin-top: 10px; color: black">Enter Phone Number</h1>
@@ -51,10 +52,10 @@
                                 class="material-icons" id="close">close</i></button>
                 </div>
             </div>
-            <div class="result">
+            <div class="result noprint">
                 <input id="mynumber" placeholder="0"/>
             </div>
-            <div class="container">
+            <div class="container noprint">
                 <ul class="keypad">
                     <a href="#" class="press" id="1">
                         <li class="button">
@@ -292,7 +293,7 @@
                 var result;
                 if (input === "GO") {
                     /* do something with*/
-                    if ($("#mynumber").val().length == 10){
+                    if ($("#mynumber").val().length == 10) {
                         let data = {
                             service_id: service.id,
                             name: $('#name').val(),

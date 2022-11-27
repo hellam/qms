@@ -78,7 +78,7 @@
                     <li id="side-menu-icon-attachment" class="navbar-list left"><a
                                 class="waves-effect waves-block waves-light profile-button" href="javascript:void(0);"
                                 data-target="extra-dropdown"><i class="material-icons">attachment</i></a></li>
-                    <li class="hide-on-med-and-down"><a class="waves-effect waves-block waves-light toggle-fullscreen"
+                    <li class="hide-on-med-and-down"><a class="toggle-fullscreen noprint"
                                                         href="javascript:void(0);"><i class="material-icons">settings_overscan</i></a>
                     </li>
                     <li id="side-menu-icon"><a class="waves-effect waves-block waves-light sidenav-trigger" href="#"
