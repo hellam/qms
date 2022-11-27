@@ -137,7 +137,7 @@ if (document.getElementById("display-page")) {
                 if (this.token_for_sound) {
                     let voice = `${window?.JLToken?.voice_content_one} ${this.token_for_sound.token_letter.toString().split('').join(' ')} ${this.token_for_sound.token_number.toString().split('').join(' ')} ${window?.JLToken?.voice_content_two} ${this.token_for_sound.counter.name}`;
                     const audio = document.createElement("audio");
-                    audio.src = "https://translate.google.com/translate_tts?client=tw-ob&tl=en-us&op=translate&q="+voice;
+                    audio.src = 'http://'+window.location.host+'/qms/voice/en-us/'+voice;
                     audio.addEventListener("ended", () => {
                         this.token_for_sound = null;
                         this.isPlaying = false;

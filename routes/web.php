@@ -13,6 +13,9 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TokenController;
+use App\Http\Controllers\VoiceController;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -102,6 +105,22 @@ Route::middleware(['setLocale'])->group(function () {
     Route::post('queue', [TokenController::class, 'createToken'])->name('create-token');
     Route::get('send-sms', [SmsController::class, 'sendSms'])->name('send-sms');
     Route::get('crone-send-sms', [SmsController::class, 'smppSendQueued'])->name('crone_send_sms');
+    Route::get('/voice/{lang}/{text}', [VoiceController::class, 'textToSpeach'])->name('voice');
+    //get profile image
+//    Route::get('audio/{file}', function ($file) {
+//        try{
+//            $path = storage_path('app/public/audio/' . $file);
+//            $file = File::get($path);
+//            $type = File::mimeType($path);
+//
+//            $response = Response::make($file, 200);
+//            $response->header("Content-Type", $type);
+//        }catch(Exception $e){
+//            $response = '';
+//        }
+//
+//        return $response;
+//    })->name('get_audio');
     // });
     // Route::group(['middleware' => ['permission:view display']], function () {
     Route::get('display', [DisplayController::class, 'showDisplayUrl'])->name('display');

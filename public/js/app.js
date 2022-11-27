@@ -7522,13 +7522,24 @@
                         this.audio.addEventListener("ended", (function () {
                             if (e.token_for_sound) {
                                 var t, n, r, a, s, o,
-                                    i = "".concat(null === (t = window) || void 0 === t || null === (n = t.JLToken) || void 0 === n ? void 0 : n.voice_content_one, " ").concat(e.token_for_sound.token_letter.toString().split("").join(" "), " ").concat(e.token_for_sound.token_number.toString().split("").join(" "), " ").concat(null === (r = window) || void 0 === r || null === (a = r.JLToken) || void 0 === a ? void 0 : a.voice_content_two, " ").concat(e.token_for_sound.counter.name);
-                                responsiveVoice.speak(i, null === (s = window) || void 0 === s || null === (o = s.JLToken) || void 0 === o ? void 0 : o.voice_type, {
-                                    rate: 0.80,
-                                    onend: function () {
+                                    i = "".concat(null === (t = window) || void 0 === t || null === (n = t.JLToken) || void 0 === n ? void 0 : n.voice_content_one, " ").concat(e.token_for_sound.token_letter.toString().split("").join(" "), " ").concat(e.token_for_sound.token_number.toString().split("").join(","), " ").concat(null === (r = window) || void 0 === r || null === (a = r.JLToken) || void 0 === a ? void 0 : a.voice_content_two, " ").concat(e.token_for_sound.counter.name);
+                                // console.log(window.location.host)
+                                axios.get('http://'+window.location.host+'/qms/voice/en-us/'+i).then(res => {
+
+                                    const audio = document.createElement("audio");
+                                    audio.src = res.data;
+                                    audio.load(); //call this to just preload the audio without playing
+                                    audio.play(); //call this to play the song right away
+                                    audio.addEventListener("ended", () => {
                                         e.token_for_sound = null, e.isPlaying = !1, e.processQueue()
-                                    }
-                                })
+                                    });
+                                });
+                                // responsiveVoice.speak(i, null === (s = window) || void 0 === s || null === (o = s.JLToken) || void 0 === o ? void 0 : o.voice_type, {
+                                //     rate: 0.80,
+                                //     onend: function () {
+                                //         e.token_for_sound = null, e.isPlaying = !1, e.processQueue()
+                                //     }
+                                // })
                             }
                         })), this.getTokens()
                     }, unmounted: function () {
