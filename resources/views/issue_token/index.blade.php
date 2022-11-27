@@ -224,6 +224,7 @@
                         $('#email').val(null);
                         $('#name').val(null);
                         let html = `
+
                             <p style="font-size: 15px; font-weight: bold; margin-top:-15px;">` + response.settings.name + `,` + response.settings.location + `
                             </p>
                             <p style="font-size: 10px; margin-top:-15px;">` + response.queue.service.name + `</p>
