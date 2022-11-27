@@ -1,25 +1,34 @@
 @extends('layout.call_page')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/custom/keypad.css') }}">
+    <style>
+        @media print {
+            .noprint {
+                display: none !important;
+            }
+            #printSection{
+                display: block!important;
+            }
+        }
+    </style>
 @endsection
 @section('content')
     <!-- BEGIN: Page Main-->
-    <div id="loader-wrapper">
-        <div id="loader"></div>
+    <div id="loader-wrapper" class="noprint">
+        <div id="loader" class="noprint"></div>
 
-        <div class="loader-section section-left"></div>
-        <div class="loader-section section-right"></div>
+        <div class="loader-section section-left noprint"></div>
+        <div class="loader-section section-right noprint"></div>
 
     </div>
     <div id="main" class="noprint" style="padding: 15px 15px 0px;">
-        <div class="wrapper noprint">
+        <div class="wrapper">
             <section class="content-wrapper noprint">
                 <div class="container noprint">
-                    <div class="row noprint">
-                        <div class="col s12 noprint">
-                            <div class="card noprint" style="background:#f9f9f9;box-shadow:none"
-                                 id="service-btn-container">
-                                <span class="card-title noprint"
+                    <div class="row">
+                        <div class="col s12">
+                            <div class="card" style="background:#f9f9f9;box-shadow:none" id="service-btn-container">
+                                <span class="card-title"
                                       style="line-height:1;font-size:22px"> {{__('messages.issue_token.click one service to issue token')}}</span>
                                 <div class="divider" style="margin:10px 0 10px 0"></div>
 
@@ -34,7 +43,7 @@
                                 </div>
                             </div>
                         </div>
-                        <form action="{{route('create-token')}}" method="post" id="my-form-two" style="display: none;" class="noprint">
+                        <form action="{{route('create-token')}}" method="post" id="my-form-two" style="display: none;">
                             {{csrf_field()}}
                         </form>
                     </div>
@@ -42,8 +51,8 @@
             </section>
         </div>
         <!-- Modal Structure -->
-        <div id="modal1" class="modal modal1 noprint">
-            <div class="row align-items-center">
+        <div id="modal1" class="modal modal1  noprint">
+            <div class="row align-items-center  noprint">
                 <div class="col s12 m6">
                     <h1 style="text-align: center; margin-top: 10px; color: black">Enter Phone Number</h1>
                 </div>
@@ -52,10 +61,10 @@
                                 class="material-icons" id="close">close</i></button>
                 </div>
             </div>
-            <div class="result noprint">
+            <div class="result  noprint">
                 <input id="mynumber" placeholder="0"/>
             </div>
-            <div class="container noprint">
+            <div class="container  noprint">
                 <ul class="keypad">
                     <a href="#" class="press" id="1">
                         <li class="button">
@@ -134,7 +143,7 @@
         </div>
     </div>
 @endsection
-<div id="printarea" class="printarea" style="text-align:center;margin-top: 20px; display:none">
+<div id="printSection" style="text-align:center;margin-top: 20px; display:none">
 </div>
 @section('js')
     <script>
@@ -225,21 +234,29 @@
                         $('#email').val(null);
                         $('#name').val(null);
                         let html = `
-                            <p style="font-size: 15px; font-weight: bold; margin-top:-15px;">` + response.settings.name + `,` + response.settings.location + `
-                            </p>
-                            <p style="font-size: 10px; margin-top:-15px;">` + response.queue.service.name + `</p>
-                            <h3 style="font-size: 20px; margin-bottom: 5px; font-weight: bold; margin-top:-12px; margin-bottom:16px;">` + response.queue.letter + ` - ` + response.queue.number + `</h3>
-                            <p style="font-size: 12px; margin-top: -16px;margin-bottom: 27px;">` + response.queue.formated_date + `</p>
-                            <div style="margin-top:-20px; margin-bottom:15px;" align="center">
-                            </div>
-                            <p style="font-size: 10px; margin-top:-12px;">{{__('messages.issue_token.please wait for your turn')}}</p>
-                            <p style="font-size: 10px; margin-top:-12px;">{{__('messages.issue_token.customer waiting')}}:` + response.customer_waiting + ` 
-                            </p>
-                            <p style="text-align:left !important;font-size:8px;"></p>
-                            <p style="text-align:right !important; margin-top:-23px;font-size:8px;"></p>`;
-                        $('#printarea').html(html);
+                        <table style="width: 100%;">
+                                <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 30px;" id="duplicate"></th></tr>
+                                <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 16px;"><img style="max-width: 200px;" src="{{asset('app-assets/images/logo/kush_bank_logo.png')}}" style=""/></th></tr>
+                                <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 22px;">` + response.settings.name + `</th></tr>
+                                <!--<tr><td colspan="3" style="text-align:center;font-size: 16px;font-weight: bold;">KITALE</td></tr>-->
+                                <!--<tr><td colspan="3" style="text-align:center;">Embakasi, Along Catherine Ndoroba Rd/AA Rd Next to AA Hqs.</td></tr>-->
+                                <tr><td colspan="3" style="text-align:center;">` + response.settings.location + `</td></tr>
+                                <!--<tr><td colspan="3" style="text-align:center;">PIN: P0511615251 Tel: 0724484335</td></tr>-->
+                                <!--<tr><td colspan="3" style="text-align:center;"><i><small>Dealers in: Airtime distribution and general supplies..</small></i></td></tr>-->
+                                <tr><td colspan="3" style="text-align:center;"><i><small>Tel: ` + response.settings.phone + `</small></i></td></tr>
+                                <tr><td colspan="3" style="text-align:center;"><br/></td></tr>
+                                <tr><td colspan="3" style="text-align:center;">Service: ` + response.queue.service.name + `</td></tr>
+                                <tr><th colspan="3" style="text-align:center ;font-weight:bold;font-size: 22px;">Ticket: ` + response.queue.letter + ` - ` + response.queue.number + `</th></tr>
+                                <tr><td colspan="3" style="text-align:center;">Date: ` + response.queue.formated_date + `</td></tr>
+                                <tr><td colspan="3" style="text-align:center;"><br/></td></tr>
+                                <tr><td colspan="3" style="text-align:center;">Please take your seat we will attain you soon</td></tr>
+                                <tr><td colspan="3" style="text-align:center;">{{__('messages.issue_token.customer waiting')}}:` + response.customer_waiting + `</td></tr>
+                            </table>`;
+                        $('#printSection').html(html);
                         $('body').addClass('loaded');
-                        window.print();
+
+                        // window.print();
+                        printTicket();
                     } else if (response.status_code == 422 && response.errors && (response.errors['name'] || response.errors['email'] || response.errors['phone'])) {
                         $('#modal_button').removeAttr('disabled');
                         if (response.errors['name'] && response.errors['name'][0]) {
@@ -274,6 +291,18 @@
                 }
             });
         }
+        function printTicket() {
+            var mywindow = window.open('', 'PRINT', 'height=600,width=12000');
+
+            mywindow.document.write(document.getElementById('printSection').innerHTML);
+            mywindow.document.close(); // necessary for IE >= 10
+            mywindow.focus(); // necessary for IE >= 10*/
+
+            mywindow.print();
+            mywindow.close();
+
+            return true;
+        }
 
         $('input').mousedown(function (e) {
             e.preventDefault();
@@ -293,7 +322,7 @@
                 var result;
                 if (input === "GO") {
                     /* do something with*/
-                    if ($("#mynumber").val().length == 10) {
+                    if ($("#mynumber").val().length == 10){
                         let data = {
                             service_id: service.id,
                             name: $('#name').val(),
