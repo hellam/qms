@@ -5,9 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JL Token | @yield('title')</title>
-    <link rel="apple-touch-icon" href="{{asset('app-assets/images/icon/favicon.ico')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/icon/favicon.ico')}}">
+    <title>Shiva QMS | @yield('title')</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css')}}">
@@ -44,7 +42,7 @@
         <nav class="navbar-main navbar-color nav-collapsible sideNav-lock">
             <div class="nav-wrapper">
                 <ul class="navbar-list left" style="padding-left: 60px;">
-                    <li><span style="font-weight: bold; font-size: x-large; ">JL Token</span></li>
+                    <li><span style="font-weight: bold; font-size: x-large; ">SHIVA QMS</span></li>
                 </ul>
                 <ul class="navbar-list right">
                     @if(isset(session()->get("settings")->logo) && Storage::disk('public')->exists(session()->get("settings")->logo))

@@ -10,10 +10,8 @@
     @elseif(Route::current()->getName() == 'display')
         <title>Display</title>
     @else
-        <title>JL Token</title>
+        <title>Shiva QMS</title>
     @endif
-    <link rel="apple-touch-icon" href="{{asset('app-assets/images/icon/favicon.ico')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('app-assets/images/icon/favicon.ico')}}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- BEGIN: VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('app-assets/vendors/vendors.min.css')}}">
@@ -85,7 +83,6 @@
                                                data-target="slide-out-right"><i class="material-icons">format_indent_increase</i></a>
                     </li>
                 </ul>
-
 
                 <ul class="dropdown-content" id="extra-dropdown">
                     <li><a href="" style="font-weight: 600; color:black">{{__('messages.common.links')}}</a></li>
