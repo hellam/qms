@@ -301,7 +301,7 @@
             mywindow.print();
             mywindow.close();
 
-            return true;
+            return window.location.href = '{{route('select_language')}}';
         }
 
         $('input').mousedown(function (e) {
