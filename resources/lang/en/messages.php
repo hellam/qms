@@ -207,6 +207,7 @@ return [
     ],
     'issue_token'=>[
         'click one service to issue token'=>'Click one service to Issue Token',
+        'select language'=>'Please Your Select Language',
         'customer waiting'=>'Customer Waiting',
         'please wait for your turn'=>'Please wait for your turn'
     ],

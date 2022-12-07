@@ -101,7 +101,8 @@ Route::middleware(['setLocale'])->group(function () {
         Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     });
     // Route::group(['middleware' => ['permission:issue token']], function () {
-    Route::get('kiosk', [TokenController::class, 'issueToken'])->name('issue_token');
+    Route::get('kiosk', [TokenController::class, 'selectLanguage'])->name('select_language');
+    Route::get('kiosk1/{lang}', [TokenController::class, 'issueToken'])->name('issue_token');
     Route::post('queue', [TokenController::class, 'createToken'])->name('create-token');
     Route::get('send-sms', [SmsController::class, 'sendSms'])->name('send-sms');
     Route::get('crone-send-sms', [SmsController::class, 'smppSendQueued'])->name('crone_send_sms');

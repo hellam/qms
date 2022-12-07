@@ -23,7 +23,14 @@ class TokenController extends Controller
         $this->tokenRepository = $tokenRepository;
     }
 
-    public function issueToken()
+    public function selectLanguage()
+    {
+        return view(
+            'issue_token.language',
+            ['services' => $this->services->getAllActiveServices(), 'settings' => Setting::first()]
+        );
+    }
+    public function issueToken($lang)
     {
         return view(
             'issue_token.index',

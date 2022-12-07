@@ -87,7 +87,7 @@
                 <ul class="dropdown-content" id="extra-dropdown">
                     <li><a href="" style="font-weight: 600; color:black">{{__('messages.common.links')}}</a></li>
                     <li class="divider"></li>
-                    <li><a class="grey-text text-darken-1" ontouchstart="kioskUrl()" href="{{route('issue_token')}}"
+                    <li><a class="grey-text text-darken-1" ontouchstart="kioskUrl()" href="{{route('select_language')}}"
                            target="_blank"> {{__('messages.menu.issue token url')}}</a></li>
                     <li><a class="grey-text text-darken-1" ontouchstart="displayUrl()" href="{{route('display')}}"
                            target="_blank"> {{__('messages.menu.display url')}}</a></li>
@@ -327,7 +327,7 @@
     }
 
     function kioskUrl() {
-        window.open("{{route('issue_token')}}", '_blank');
+        window.open("{{route('select_language')}}", '_blank');
     }
 
     function displayUrl() {
