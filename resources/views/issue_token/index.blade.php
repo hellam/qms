@@ -31,7 +31,7 @@
                             <div class="card" style="background:#f9f9f9;box-shadow:none" id="service-btn-container">
                                 <div class="row" style="margin: 0 0">
                                     <div class="col s12 m12 l12" style="margin: 0">
-                                        <h5 class="breadcrumbs-title col s5"><b style="line-height:1;font-size:25px">{{$lang=='ar' ? __('messages.issue_token.click one service to issue token_ar'):__('messages.issue_token.click one service to issue token')}}</b></h5>
+                                        <h5 class="breadcrumbs-title col s5"><b style="line-height:1;font-size:22px">{{$lang=='ar' ? __('messages.issue_token.click one service to issue token_ar'):__('messages.issue_token.click one service to issue token')}}</b></h5>
                                         <ol class="breadcrumbs col s7 right-align" style="margin: 0">
                                             <a class="btn-floating waves-effect waves-light teal tooltipped" href="{{route('select_language')}}" data-position="top" data-tooltip="Go Back"><i class="material-icons">arrow_back</i></a>
                                         </ol>
