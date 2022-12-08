@@ -44,6 +44,9 @@ class VoiceController extends Controller
         if (!File::exists($path)) {
             $mp3 = 'data:audio/mp3;base64,'.base64_encode(file_get_contents(
                 'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=' . urlencode($text) . '&tl=' . $lang));
+//            $_mp3 = file_get_contents(
+//                'https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&q=' . urlencode($text) . '&tl=' . $lang);
+//            Storage::put('public/audio/' . $file, $_mp3);
             $response = $mp3;
         }
 

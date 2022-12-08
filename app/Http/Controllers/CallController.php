@@ -12,6 +12,7 @@ use App\Repositories\CounterRepository;
 use App\Repositories\ServiceRepository;
 use App\Repositories\TokenRepository;
 use Carbon\Carbon;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -83,7 +84,7 @@ class CallController extends Controller
         return response()->json(['service' => $service, 'counter' => $counter, 'tokens_for_call' => $tokens_for_call, 'called_tokens' => $called_tokens]);
     }
 
-    public function callNext(Request $request)
+    public function callNext(Request $request): JsonResponse
     {
         $request->validate([
             'service_id' => 'required|exists:services,id',

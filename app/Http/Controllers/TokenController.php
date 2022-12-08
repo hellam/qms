@@ -34,7 +34,7 @@ class TokenController extends Controller
     {
         return view(
             'issue_token.index',
-            ['services' => $this->services->getAllActiveServices(), 'settings' => Setting::first()]
+            ['services' => $this->services->getAllActiveServices(), 'settings' => Setting::first(),'lang' => $lang]
         );
     }
 
@@ -48,6 +48,7 @@ class TokenController extends Controller
             $request->validate([
                 'service_id' => 'required|exists:services,id',
                 'with_details' => 'required',
+                'lang' => 'required',
                 'name' => Rule::requiredIf(function () use ($request, $service) {
                     return $request->with_details && ($service->name_required == 1);
                 }),

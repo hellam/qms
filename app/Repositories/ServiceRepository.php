@@ -26,6 +26,7 @@ class ServiceRepository
         if (!isset($data['sms'])) $data['sms'] = false;
         $service = Service::create([
             'name' => $data['name'],
+            'ar_name' => $data['ar_name'],
             'letter' => $data['letter'],
             'start_number' => $data['start_number'],
             'status' => 1,
@@ -55,6 +56,7 @@ class ServiceRepository
         if (!isset($data['sms'])) $data['sms'] = false;
 
         $service->name = $data['name'];
+        $service->ar_name = $data['ar_name'];
         $service->letter = $data['letter'];
         $service->start_number = $data['start_number'];
         $service->sms_enabled = $data['sms'];

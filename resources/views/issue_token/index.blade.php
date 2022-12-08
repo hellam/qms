@@ -6,8 +6,9 @@
             .noprint {
                 display: none !important;
             }
-            #printSection{
-                display: block!important;
+
+            #printSection {
+                display: block !important;
             }
         }
     </style>
@@ -28,16 +29,23 @@
                     <div class="row">
                         <div class="col s12">
                             <div class="card" style="background:#f9f9f9;box-shadow:none" id="service-btn-container">
-                                <span class="card-title"
-                                      style="line-height:1;font-size:22px"> {{__('messages.issue_token.click one service to issue token')}}</span>
+                                <div class="row" style="margin: 0 0">
+                                    <div class="col s12 m12 l12" style="margin: 0">
+                                        <h5 class="breadcrumbs-title col s5"><b style="line-height:1;font-size:25px">{{$lang=='ar' ? __('messages.issue_token.click one service to issue token_ar'):__('messages.issue_token.click one service to issue token')}}</b></h5>
+                                        <ol class="breadcrumbs col s7 right-align" style="margin: 0">
+                                            <a class="btn-floating waves-effect waves-light teal tooltipped" href="{{route('select_language')}}" data-position="top" data-tooltip="Go Back"><i class="material-icons">arrow_back</i></a>
+                                        </ol>
+                                    </div>
+                                </div>
                                 <div class="divider" style="margin:10px 0 10px 0"></div>
 
                                 <div class="row noprint">
+
                                     @foreach($services as $service)
                                         <div class="col s12 m6 mb-3 noprint" onclick="queueDept({{$service}})">
                                             <span class="btn btn-large btn-queue mb-1 width-100 noprint"
                                                   id="service_id_24"
-                                                  style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">{{$service->name}}</span>
+                                                  style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">{{$lang=='ar' ? $service->ar_name??$service->name : $service->name}}</span>
                                         </div>
                                     @endforeach
                                 </div>
@@ -168,9 +176,11 @@
                 $('#modal1').modal('open');
             } else {
                 $('body').removeClass('loaded');
+                let lang = localStorage.getItem('lang');
                 let data = {
                     service_id: value.id,
-                    with_details: false
+                    with_details: false,
+                    lang: lang,
                 }
                 createToken(data);
             }
@@ -209,11 +219,13 @@
                 submitHandler: function (form) {
                     $('#modal_button').attr('disabled', 'disabled');
                     $('body').removeClass('loaded');
+                    let lang = localStorage.getItem('lang');
                     let data = {
                         service_id: service.id,
                         name: $('#name').val(),
                         email: $('#email').val(),
                         phone: $('#phone').val(),
+                        lang: lang,
                         with_details: true
                     }
                     createToken(data);
@@ -291,6 +303,7 @@
                 }
             });
         }
+
         function printTicket() {
             var mywindow = window.open('', 'PRINT', 'height=600,width=12000');
 
@@ -322,11 +335,13 @@
                 var result;
                 if (input === "GO") {
                     /* do something with*/
-                    if ($("#mynumber").val().length == 10){
+                    if ($("#mynumber").val().length == 10) {
+                        let lang = localStorage.getItem('lang');
                         let data = {
                             service_id: service.id,
                             name: $('#name').val(),
                             email: $('#email').val(),
+                            lang: lang,
                             phone: $("#mynumber").val(),
                             with_details: true
                         }

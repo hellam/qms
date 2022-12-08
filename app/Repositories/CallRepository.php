@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Consts\CallStatuses;
 use App\Http\Controllers\SendSMSController;
 use App\Models\Call;
+use App\Models\Language;
 use App\Models\Queue;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class CallRepository
 
     public function callNext($service_id, $counter_id)
     {
-        $already_called =  Call::where('created_at', '>=', Carbon::now()->startOfDay())
+        $already_called = Call::where('created_at', '>=', Carbon::now()->startOfDay())
             ->where('created_at', '<=', Carbon::now())
             ->where('service_id', $service_id)
             ->where('counter_id', $counter_id)
@@ -36,6 +37,7 @@ class CallRepository
                 $call = Call::create([
                     'queue_id' => $queue->id,
                     'service_id' => $queue->service_id,
+                    'lang' => $queue->lang,
                     'counter_id' => session()->get('counter')->id,
                     'user_id' => Auth::user()->id,
                     'token_letter' => $queue->letter,
@@ -68,6 +70,7 @@ class CallRepository
             $call = Call::create([
                 'queue_id' => $queue->id,
                 'service_id' => $queue->service_id,
+                'lang' => $queue->lang,
                 'counter_id' => session()->get('counter')->id,
                 'user_id' => Auth::user()->id,
                 'token_letter' => $queue->letter,
@@ -111,6 +114,7 @@ class CallRepository
         $new_call = Call::create([
             'queue_id' => $copy->queue_id,
             'service_id' => $copy->service_id,
+            'lang' => $copy->lang,
             'counter_id' => $copy->counter_id,
             'user_id' => $copy->user_id,
             'token_letter' => $copy->token_letter,
@@ -124,7 +128,16 @@ class CallRepository
 
     public function setCallsForDisplay($service)
     {
-        $data = json_encode(Call::where('created_at', '>=', Carbon::now()->startOfDay())->where('created_at', '<=', Carbon::now())->orderByDesc('id')->with('counter')->limit(5)->get()->toArray());
+        $calls = Call::where('created_at', '>=', Carbon::now()->startOfDay())->where('created_at', '<=', Carbon::now())->orderByDesc('id')->with('counter')->limit(5)->get()->toArray();
+        $counter = 0;
+        foreach ($calls as $call) {
+            $lang = $call['lang'] == 'ar' ? 'sa' : 'us';
+            $language = Language::where('code', $lang)->first();
+            $calls[$counter]['voice_content_one'] = $language->token_translation;
+            $calls[$counter]['voice_content_two'] = $language->please_proceed_to_translation;
+            $counter += 1;
+        }
+        $data = json_encode($calls);
         Storage::put('public/tokens_for_display.json', $data);
 
         $service_data = json_encode(Call::where('created_at', '>=', Carbon::now()->startOfDay())->where('created_at', '<=', Carbon::now())->where('service_id', $service->id)->orderByDesc('id')->with('counter')->limit(5)->get()->toArray());

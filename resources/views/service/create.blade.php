@@ -25,8 +25,8 @@
                                 {{@csrf_field()}}
                                 <div class="row">
                                     <div class="row form_align">
-                                        <div class="input-field col s12">
-                                            <label for="name">{{__('messages.service_page.add service')}}</label>
+                                        <div class="input-field col s6">
+                                            <label for="name">English Name</label>
                                             <input id="name" name="name" type="text" value="{{old('name')}}" data-error=".name">
                                             <div class="name">
                                                 @if ($errors->has('name'))
@@ -34,7 +34,15 @@
                                                 @endif
                                             </div>
                                         </div>
-
+                                        <div class="input-field col s6">
+                                            <label for="ar_name">Arabic Name</label>
+                                            <input id="ar_name" name="ar_name" type="text" value="{{old('ar_name')}}" data-error=".ar_name">
+                                            <div class="ar_name">
+                                                @if ($errors->has('ar_name'))
+                                                    <span class="text-danger errbk">{{ $errors->first('ar_name') }}</span>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row form_align">
                                         <div class="input-field col s6">

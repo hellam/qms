@@ -7522,9 +7522,11 @@
                         this.audio.addEventListener("ended", (function () {
                             if (e.token_for_sound) {
                                 var t, n, r, a, s, o,
-                                    i = "".concat(null === (t = window) || void 0 === t || null === (n = t.JLToken) || void 0 === n ? void 0 : n.voice_content_one, " ").concat(e.token_for_sound.token_letter.toString().split("").join(" "), " ").concat(e.token_for_sound.token_number.toString().split("").join(","), " ").concat(null === (r = window) || void 0 === r || null === (a = r.JLToken) || void 0 === a ? void 0 : a.voice_content_two, " ").concat(e.token_for_sound.counter.name);
-                                // console.log(window.location.host)
-                                axios.get('http://'+window.location.host+'/qms/voice/en-us/'+i).then(res => {
+                                    i = "".concat(e.token_for_sound.voice_content_one, " ").concat(e.token_for_sound.token_letter.toString().split("").join(" "), " ").concat(e.token_for_sound.token_number.toString().split("").join(","), " ").concat(e.token_for_sound.voice_content_two, " ").concat(e.token_for_sound.counter.name);
+
+                                let lang = e.token_for_sound.lang;
+                                console.log(lang)
+                                axios.get('http://'+window.location.host+'/qms/voice/'+lang+'/'+i).then(res => {
 
                                     const audio = document.createElement("audio");
                                     audio.src = res.data;

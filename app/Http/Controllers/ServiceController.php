@@ -61,6 +61,7 @@ class ServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:services',
+            'ar_name' => 'required|unique:services',
             'letter' => 'required|unique:services',
             'start_number' => 'required',
             'sms' => 'nullable',
@@ -132,6 +133,7 @@ class ServiceController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:services,name,' . $service->id,
+            'ar_name' => 'required|unique:services,ar_name,' . $service->id,
             'letter' => 'required|unique:services,letter,' . $service->id,
             'start_number' => 'required',
             'sms' => 'nullable',

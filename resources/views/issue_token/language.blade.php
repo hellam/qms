@@ -35,14 +35,14 @@
 
                                 <div class="row noprint">
                                     <div class="col s12 m6 mb-3 noprint"
-                                         onclick="window.location.href = '{{route('issue_token',['en-us'])}}'">
+                                         onclick="localStorage.setItem('lang','en-us'); window.location.href = '{{route('issue_token',['en-us'])}}'">
                                             <span class="btn btn-large btn-queue mb-1 width-100 noprint"
                                                   id="service_id_24"
                                                   style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">English</span>
                                     </div>
 
                                     <div class="col s12 m6 mb-3 noprint"
-                                         onclick="window.location.href = '{{route('issue_token',['ar'])}}'">
+                                         onclick="localStorage.setItem('lang','ar'); window.location.href = '{{route('issue_token',['ar'])}}'">
                                             <span class="btn btn-large btn-queue mb-1 width-100 noprint"
                                                   id="service_id_24"
                                                   style="background: #016B3F; height: 100px !important; line-height: 100px; font-size: 25px; font-weight: bold; text-transform: uppercase">Arabic</span>

@@ -19,6 +19,7 @@ class TokenRepository
         $queue = Queue::create([
             'service_id' => $service->id,
             'number' => $token_number,
+            'lang' => $data['lang'],
             'called' => false,
             'reference_no' => Str::random(9),
             'letter' => $service->letter,
