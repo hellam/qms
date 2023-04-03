@@ -41,6 +41,20 @@
                     <form id="monthly_form" action="{{route('monthly_report')}}" autocomplete="off">
                         <div class="row">
                             <div class="input-field col s4">
+                                <select name="download" id="export" data-error=".service_id">
+                                    <option value="view">No</option>
+                                    <option value="download">Yes</option>
+                                    <!-- <option value="2">Option 2</option>
+                                    <option value="3">Option 3</option> -->
+                                </select>
+                                <label>Export Data</label>
+                                <div class="service_id">
+                                    @if ($errors->has('service_id'))
+                                    <span class="text-danger errbk">{{ $errors->first('service_id') }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="input-field col s4">
                                 <select name="service_id" id="service_id" data-error=".service_id">
                                     <option value="" selected>{{__('messages.reports.all services')}}</option>
                                     @foreach($services as $service)

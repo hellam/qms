@@ -82,7 +82,7 @@ class ReportController extends Controller
                 $export = new MonthlyReportExport(
                     $reports
                 );
-                return Excel::download($export, 'monthly_report.xlsx');
+                return Excel::download($export, 'monthly_report_from_'.$request->starting_date.'_to_'.$request->ending_date.'.xlsx');
             }
             $count = $this->reportRepository->getTokenCounts($request->starting_date, $request->ending_date);
         }
