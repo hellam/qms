@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\MonthlyReportExport;
 use App\Models\CallStatus;
 use App\Models\Counter;
 use App\Models\Service;
@@ -10,6 +11,8 @@ use App\Models\User;
 use App\Repositories\ReportRepository;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use phpDocumentor\Reflection\Types\Collection;
 
 class ReportController extends Controller
 {
@@ -75,10 +78,16 @@ class ReportController extends Controller
             if (isset($request->call_status)) $status = $request->call_status;
 
             $reports = $this->reportRepository->getMonthlyReport($request);
+            if ($request->download=='download'){
+                $export = new MonthlyReportExport(
+                    $reports
+                );
+                return Excel::download($export, 'monthly_report.xlsx');
+            }
             $count = $this->reportRepository->getTokenCounts($request->starting_date, $request->ending_date);
         }
 
-
+//        return $reports;
         return view('reports.monthly_report', ['token_count' => $count, 'users' => $users, 'services' => $services, 'counters' => $counters, 'statuses' => $statuses, 'reports' => $reports, 'timezone' => Setting::first()->timezone, 'selected' => ['starting_date' => $starting_date, 'ending_date' => $ending_date, 'counter' => $counter, 'service' => $service, 'user' => $user, 'status' => $status]]);
     }
 }
